@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //metodo que duevuleve todos los premios
+    public function premios(){
+        return $this->hasMany(premio::class);
+    }
 }
