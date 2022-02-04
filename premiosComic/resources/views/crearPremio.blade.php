@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     @isset($premio)
-                        <form action="{{ url('modificar')}}" method="post">
+                        <form action="{{ url('modificar/$premio->id')}}" method="post">
                             @csrf
 
                             <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título del comic:</label>

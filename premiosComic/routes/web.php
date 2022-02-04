@@ -29,6 +29,7 @@ Route::get('/borrar/{id}', [PremioController::class,'borrarId'])->middleware(['a
 
 Route::get('/modificar/{id}', [PremioController::class,'modificarId'])->middleware(['auth'])->name('modificarId');
 
+Route::post('/modificar/{id}', [PremioController::class,'modificarEnBd'])->middleware(['auth'])->name('modificarEnBd');
 
 
 require __DIR__.'/auth.php';

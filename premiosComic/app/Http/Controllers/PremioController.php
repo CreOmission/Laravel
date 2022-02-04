@@ -34,7 +34,6 @@ class PremioController extends Controller
 
     	return redirect()->route('dashboard');
 
-    	$datos
     }
 
     public function misPremios(){
@@ -64,5 +63,20 @@ class PremioController extends Controller
         }else{
             return view('misPremios',['listaPremios' => Auth::User()->premios]);
         }
+    }
+
+    public function modificarEnBd(Request $datos, $id){
+        $p = premio::find($id);
+
+        if ($p->user_id == Auth::User()->id) {
+            # code...
+        }
+        $p->anio = $datos->anio;
+        $p->autor = $datos->autor;
+        $p->comic = $datos->titulo;
+
+        $p->save();
+
+        return redirect()->route('misPremios');
     }
 }
