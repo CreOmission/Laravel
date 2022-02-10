@@ -20,7 +20,7 @@
                             <br>
 
                             <x-label for="equipo">Equipo:</x-label>
-                            <x-select name="equipo">
+                            <select name="equipo">
                                 @foreach ($leq as $equip)
                                     <option value="{{$equip->id}}">{{$equip->nombre}}</option>
                                 @endforeach
@@ -30,7 +30,16 @@
                                     {{ __('Guardar jugador')}}
                             </x-button>
                         
-                    </form>                          
+                    </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif                        
                 </div>
             </div>
         </div>

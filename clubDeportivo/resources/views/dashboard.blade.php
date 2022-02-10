@@ -11,12 +11,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ul>
                      @foreach($le as $equipo)
-                        <li><a href="{{url('listaJugadores/'.$equipo->id)}}">{{$equipo->nombre}}</a></li>
+                        <li><a href="{{url('listaJugadores/'.$equipo->id)}}">{{$equipo->nombre}}</a>
+                        <a href="{{url('modificarEquipo/'.$equipo->id)}}">Modificar</a>
+                        <a href="{{url('borrarEquipo/'.$equipo->id)}}">Borrar</a>
+                        </li>
 
                      @endforeach
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </div>0
 </x-app-layout>
