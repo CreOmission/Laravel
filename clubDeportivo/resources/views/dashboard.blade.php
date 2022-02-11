@@ -21,5 +21,5 @@
                 </div>
             </div>
         </div>
-    </div>0
+    </div>
 </x-app-layout>

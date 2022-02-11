@@ -24,7 +24,8 @@ class JugadorController extends Controller
     	//validar
     	$respuesta = $datos->validate([
     		'nombre' => 'required',
-    		'edad' => 'required|numeric'
+    		'edad' => 'required|numeric',
+            'equipo_id'=>'required'
     	]);
     	//crear modelo
     	$j = new jugador();
@@ -35,11 +36,47 @@ class JugadorController extends Controller
 
     	$j->save();
 			//utilizamos el nombre de la ruta. También necesita parámetro en este caso
-    	return redirect()->route('listaJugadores',['id',$datos->equipo_id]);
+    	return redirect()->route('listaJugadores',['id'=>$datos->equipo_id]);
     }
 
 
 
+    public function borrar($id){
+
+        $j = jugador::find($id);
+
+        $j->delete();
+
+        $equipo_id  =$j->equipo_id;
+       return redirect()->route('listaJugadores',['id'=>$equipo_id]);
+    
+    }
+
+
+
+
+
+    public function modificar($id){
+
+        $j = jugador::find($id);
+
+        $equipos = equipo::All();
+
+       return view('formularioCrearJugador',['jugador'=>$j,'leq'=>$equipos]);
+    
+    }
+
+    public function modificarGuardarBD(Request $datos, $id){
+        $j = jugador::find($id);
+
+        $j->nombre = $datos->nombre;
+        $j->edad = $datos->edad;
+        $j->equipo_id = $datos->equipo_id;
+
+        $j->save();
+
+        return redirect()->route('dashboard');
+    }
  /*   public function crearJugador(Request $datos){
     	$j = new jugador();
 

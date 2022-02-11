@@ -21,6 +21,7 @@
                     <x-nav-link :href="route('crearJugador')" :active="request()->routeIs('crearJugador')">
                         {{ __('Crear Jugador') }}
                     </x-nav-link>
+                    
                 </div>
             </div>
 

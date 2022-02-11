@@ -35,4 +35,39 @@ class EquipoController extends Controller
 
     	return redirect()->route('dashboard',['le' => Equipo::All()]);
     }
+
+    public function borrar($id){
+        $e = equipo::find($id);
+
+        //del quipo sacamos los jugadores y borramos
+        foreach ($e->jugadores as $jugador) {
+            $jugador->delete();
+        }
+        $e->delete();
+
+        return view('dashboard',['le' => Equipo::All()]);
+    }
+
+
+
+    public function modificar($id){
+        $e = equipo::find($id);
+
+        return view('formularioCrearEquipo',['equipo'=>$e]);
+    }
+
+
+
+
+    public function modificarGuardarBD(Request $datos, $id){
+        $e = equipo::find($id);
+
+        $e->nombre = $datos->nombre;
+        $e->entrenador = $datos->entrenador;
+        $e->categoria = $datos->categoria;
+
+        $e->save();
+            //revisar esto
+        return redirect()->route('dashboard');
+    }
 }

@@ -17,7 +17,7 @@ class EquipoSeeder extends Seeder
 
         $categ = array('sub10','sub12','sub14');
 
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=1; $i <= 10; $i++) { 
             DB::table('equipos')->insert([
                 'nombre' => 'equipo '.$i,
                 'entrenador' => Str::random(10),
